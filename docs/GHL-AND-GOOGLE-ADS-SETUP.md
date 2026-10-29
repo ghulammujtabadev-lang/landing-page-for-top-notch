@@ -124,12 +124,21 @@ tags are still updated.
 
 **WF-2 "Google Ads – Qualified Lead"** (after Part 2 is done)
 - **Trigger**: Pipeline Stage Changed → pipeline *Residential Security*, stage *Assessment Scheduled*
-- **Action**: **Add to Google Ads** → conversion action **Residential – Qualified Lead**
+- **Action**: **Add to Google Ads** → conversion action **Residential – Qualified Lead**, currency USD, value 1000
+  (or leave the value empty to use the one set in Google Ads)
+  - **Custom mapping: ON** (required). Map **Google Click ID (GCLID)** → Contact › Custom Fields › *Google Click ID*,
+    **GBRAID** → *GBRAID*, **WBRAID** → *WBRAID*. Without it GHL only looks at its own attribution data, which the
+    landing page doesn't fill.
+- **Action**: Add Contact Tag `gads-qualified-sent`
+- **Settings**: Allow re-entry **OFF** (report each lead once)
 
 **WF-3 "Google Ads – Closed Deal"** (after Part 2 is done)
 - **Trigger**: Opportunity Status Changed → *Won* (pipeline Residential Security)
-- **Action**: **Add to Google Ads** → conversion action **Residential – Closed Deal**, with the value set to the
-  opportunity value
+- **Action**: **Add to Google Ads** → conversion action **Residential – Closed Deal**, currency USD, value = the
+  opportunity value merge field (Opportunity › Lead Value). **Custom mapping: ON** with the same three fields as WF-2.
+- **Action**: Add Contact Tag `gads-closed-deal-sent`
+- **Settings**: Allow re-entry **OFF**
+- Enter the contract value on the opportunity **before** marking it *Won*, or Google receives $0.
 
 ### 1.8 API access for the landing page
 1. **Settings → Private Integrations → Create new integration**. Name it "Residential Landing Page".
@@ -197,15 +206,15 @@ Offline conversions must be uploaded **within 90 days of the click**. The workfl
 changes, so this is automatic.
 
 ### 2.5 If the "Add to Google Ads" action skips a contact
-GHL's action needs a click ID on the contact. Our page stores it in the **GCLID / GBRAID / WBRAID** custom fields.
-GHL's documentation doesn't clearly say whether the action reads these custom fields or only GHL's own attribution
-data, which is filled when GHL's own forms are used. After the first real ad lead reaches *Assessment Scheduled*,
-open WF-2's **execution log**:
+GHL's action needs a click ID on the contact. Our page stores it in the **Google Click ID / GBRAID / WBRAID** custom
+fields, and the action reads them through its **Custom mapping** toggle (see WF-2 and WF-3). Contacts that came from a
+non-ad visit have no click ID and are skipped, which is expected. After the first real ad lead reaches
+*Assessment Scheduled*, open WF-2's **execution log**:
 
 - **Success** → you're done.
 - **"No click ID" / skipped** → use the fallback below. It needs no code changes:
   1. In GHL, add a **Google Sheets → Create Row** action to WF-2 and WF-3. Write to a sheet with these columns:
-     `Google Click ID` ({{contact.gclid}}), `Conversion Name` (e.g. Residential – Qualified Lead),
+     `Google Click ID` ({{contact.google_click_id}}), `Conversion Name` (e.g. Residential – Qualified Lead),
      `Conversion Time` (the current date and time from GHL's "right now" merge fields, formatted
      `yyyy-MM-dd HH:mm:ss`), `Conversion Value`, `Conversion Currency` (USD). Start the sheet from Google's
      offline-conversion template and set its first row to `Parameters:TimeZone=America/Los_Angeles`.
@@ -215,7 +224,7 @@ open WF-2's **execution log**:
 ---
 
 ## Part 3 – Values to send to me (or put in Vercel yourself)
-- [ ] `NEXT_PUBLIC_GADS_CONVERSION`: the label of *Residential LP – Lead*
+- [x] Label of *Residential LP – Lead* (`AW-17120170393/lUzSCNTltq4dEJmjxOM_`, now set in the code)
 - [ ] Confirmation that the token and Location ID are in Vercel (**don't send the token**)
 - [ ] The domain or subdomain the page will live on
 - [ ] Optional: a Google Tag Manager container ID, if you want GTM
