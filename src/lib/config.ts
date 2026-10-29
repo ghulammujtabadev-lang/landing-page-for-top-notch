@@ -8,8 +8,6 @@ export const BUSINESS = {
   email: 'info@topnotchsecuritysolutions.com',
   address: '3183 Wayside Plaza, Walnut Creek, CA 94597',
   license: 'PPO #122479',
-  insurance: '$5M General Liability',
-  bond: '$1M Bonded',
   hours: [
     { days: 'Mon–Fri', time: '7:00 AM – 7:00 PM' },
     { days: 'Sat–Sun', time: '9:00 AM – 5:00 PM' },
@@ -30,7 +28,7 @@ export const CONSENT_TEXT =
   'including by automated means. Consent is not a condition of purchase. Msg & data rates may apply. ' +
   'Msg frequency varies. Reply STOP to opt out, HELP for help.';
 
-export type PropertyKey = 'home' | 'hoa' | 'apartment' | 'vacant' | 'event';
+export type PropertyKey = 'home' | 'hoa' | 'apartment' | 'vacant' | 'event' | 'other';
 
 export const PROPERTY_TYPES: { key: PropertyKey; label: string; short: string }[] = [
   { key: 'home', label: 'Home or estate', short: 'Home / Estate' },
@@ -38,6 +36,8 @@ export const PROPERTY_TYPES: { key: PropertyKey; label: string; short: string }[
   { key: 'apartment', label: 'Apartment or condo building', short: 'Apartment / Condo' },
   { key: 'vacant', label: 'Vacant or vacation home', short: 'Vacant / Vacation Home' },
   { key: 'event', label: 'Private event at a residence', short: 'Private Event' },
+  // Visitor types the property type (shelters, housing programs, …) in a text box.
+  { key: 'other', label: 'Other type of property', short: 'Other' },
 ];
 
 export const SERVICE_TYPES = [
@@ -55,6 +55,7 @@ export const TIMELINES = [
   'Planning Ahead (1+ weeks)',
 ] as const;
 
+// The page lists counties only; cities feed the form's location list and ?city= headlines.
 export const SERVICE_AREAS: { county: string; cities: string[] }[] = [
   { county: 'Alameda County', cities: ['Oakland', 'Berkeley', 'Alameda', 'Fremont', 'Livermore', 'Pleasanton'] },
   { county: 'Contra Costa County', cities: ['Walnut Creek', 'San Ramon', 'Richmond', 'Antioch', 'Pinole'] },
@@ -68,14 +69,16 @@ export const SERVICE_AREAS: { county: string; cities: string[] }[] = [
 ];
 
 export const CITIES = SERVICE_AREAS.flatMap((a) => a.cities).sort();
-export const OTHER_CITY = 'Other Bay Area city';
+export const OTHER_CITY = 'Other city or neighboring area';
 
 // Dynamic headline (message match). Ad final URL: /residential-security?svc=hoa&city=oakland
+const DEFAULT_HEADLINE = {
+  h1: 'Licensed Residential Security Guards for Bay Area Homes & Communities',
+  sub: 'Armed & unarmed officers, HOA patrols and estate protection – vetted, uniformed and ready to deploy fast.',
+};
 export const HEADLINES: Record<PropertyKey | 'default', { h1: string; sub: string }> = {
-  default: {
-    h1: 'Licensed Residential Security Guards for Bay Area Homes & Communities',
-    sub: 'Armed & unarmed officers, HOA patrols and estate protection – vetted, uniformed and ready to deploy fast.',
-  },
+  default: DEFAULT_HEADLINE,
+  other: DEFAULT_HEADLINE,
   home: {
     h1: 'Private Home & Estate Security Guards',
     sub: 'Discreet, licensed officers protecting your family, home and property – day, night or 24/7.',

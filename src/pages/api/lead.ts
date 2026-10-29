@@ -43,6 +43,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 
   const lead: LeadInput = {
     propertyType: str(b.propertyType, 40),
+    otherProperty: str(b.otherProperty, 80),
     serviceType: str(b.serviceType, 80),
     timeline: str(b.timeline, 80),
     city: str(b.city, 80),
@@ -84,8 +85,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     firstName,
     lastName,
     phoneE164: toE164(lead.phone),
-    email: lead.email || undefined,
-    propertyType: propertyLabel(lead.propertyType),
+    email: lead.email,
+    propertyType: lead.propertyType === 'other' ? `Other – ${lead.otherProperty}` : propertyLabel(lead.propertyType),
     serviceType: lead.serviceType,
     timeline: lead.timeline,
     city: lead.city === OTHER_CITY ? lead.otherCity : lead.city,

@@ -48,7 +48,7 @@ Suggested Google Ads final-URL suffix (Settings → Tracking):
 
 ## Lead form → GoHighLevel
 
-3-step form: property type → service/timeline/city → name/phone/email (optional) + optional SMS consent.
+3-step form: property type → service/timeline/city → name/phone/email + optional SMS consent. Step 1 has an "Other" choice with a text box for the property type.
 
 What happens on submit:
 1. The browser validates each step; the server validates again (`src/lib/lead.ts` is shared).

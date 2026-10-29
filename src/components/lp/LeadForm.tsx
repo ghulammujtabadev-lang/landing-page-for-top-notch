@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
 import { useRouter } from 'next/router';
 import {
   Building2, CircleCheckBig, House, KeyRound, LoaderCircle, Lock, PartyPopper, Phone, ChevronLeft, ArrowRight,
-  TriangleAlert, Building, type LucideIcon,
+  TriangleAlert, Building, Ellipsis, type LucideIcon,
 } from 'lucide-react';
 import { BUSINESS, CITIES, CONSENT_TEXT, OTHER_CITY, PROPERTY_TYPES, SERVICE_TYPES, TIMELINES, type PropertyKey } from '@/lib/config';
 import { EMPTY_LEAD, formatPhone, propertyLabel, toE164, validateStep, type FieldErrors, type LeadInput } from '@/lib/lead';
@@ -15,6 +15,7 @@ const ICONS: Record<PropertyKey, LucideIcon> = {
   apartment: Building,
   vacant: KeyRound,
   event: PartyPopper,
+  other: Ellipsis,
 };
 
 const DRAFT_KEY = 'tn_lead_draft';
@@ -89,7 +90,8 @@ export default function LeadForm({ initialProperty, initialCity }: Props) {
       markStarted();
       if (key) {
         setLead((l) => ({ ...l, propertyType: key }));
-        if (status !== 'success') goTo(Math.max(2, step));
+        // "Other" stays on step 1 so the visitor can type the property type.
+        if (status !== 'success') goTo(key === 'other' ? 1 : Math.max(2, step));
       }
       rootRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
     };
@@ -105,6 +107,10 @@ export default function LeadForm({ initialProperty, initialCity }: Props) {
 
   const choosePropertyType = (key: PropertyKey) => {
     update('propertyType', key);
+    if (key === 'other') {
+      requestAnimationFrame(() => document.getElementById('otherProperty')?.focus());
+      return;
+    }
     goTo(2);
   };
 
@@ -155,7 +161,7 @@ export default function LeadForm({ initialProperty, initialCity }: Props) {
         firstName: data.firstName,
         email: lead.email || undefined,
         phoneE164: toE164(lead.phone),
-        propertyLabel: propertyLabel(lead.propertyType),
+        propertyLabel: propertyLabel(lead.propertyType, lead.otherProperty),
         city: lead.city === OTHER_CITY ? lead.otherCity : lead.city,
         timeline: lead.timeline,
       });
@@ -187,7 +193,7 @@ export default function LeadForm({ initialProperty, initialCity }: Props) {
         <p className="mt-2 text-center text-gray-600">Your request is in our system and a security consultant has been notified.</p>
         <ol className="mt-6 space-y-3 text-sm">
           {[
-            `A licensed security consultant reviews your ${propertyLabel(lead.propertyType).toLowerCase()} request.`,
+            `A licensed security consultant reviews your ${propertyLabel(lead.propertyType, lead.otherProperty).toLowerCase()} request.`,
             `We call you from ${BUSINESS.phoneDisplay} ${BUSINESS.responsePromiseDetail}.`,
             'You get a free, no-obligation security plan and quote.',
           ].map((t, i) => (
@@ -262,6 +268,20 @@ export default function LeadForm({ initialProperty, initialCity }: Props) {
               })}
             </div>
             {errors.propertyType && <p className="field-error">{errors.propertyType}</p>}
+            {lead.propertyType === 'other' && (
+              <div className="mt-3">
+                <label htmlFor="otherProperty" className="field-label">What type of property is it?</label>
+                <input
+                  id="otherProperty"
+                  className="field"
+                  placeholder="e.g. shelter, transitional housing, church"
+                  value={lead.otherProperty}
+                  onChange={(e) => update('otherProperty', e.target.value)}
+                  aria-invalid={Boolean(errors.otherProperty)}
+                />
+                {errors.otherProperty && <p className="field-error">{errors.otherProperty}</p>}
+              </div>
+            )}
           </fieldset>
         )}
 
@@ -373,7 +393,7 @@ export default function LeadForm({ initialProperty, initialCity }: Props) {
             </div>
             <div>
               <label htmlFor="email" className="field-label">
-                Email <span className="font-normal text-gray-400">(optional – for your written quote)</span>
+                Email <span className="font-normal text-gray-400">(for your written quote)</span>
               </label>
               <input
                 id="email"
@@ -433,7 +453,7 @@ export default function LeadForm({ initialProperty, initialCity }: Props) {
               <ChevronLeft className="h-5 w-5" aria-hidden /> Back
             </button>
           )}
-          {step > 1 && (
+          {(step > 1 || lead.propertyType === 'other') && (
             <button type="submit" className="btn-primary flex-1 text-lg" disabled={status === 'submitting'}>
               {status === 'submitting' ? (
                 <>

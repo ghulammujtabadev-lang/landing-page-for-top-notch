@@ -56,7 +56,10 @@ const jsonLd = {
         postalCode: '94597',
         addressCountry: 'US',
       },
-      areaServed: SERVICE_AREAS.flatMap((a) => a.cities.map((c) => ({ '@type': 'City', name: `${c}, CA` }))),
+      areaServed: [
+        { '@type': 'Place', name: 'San Francisco Bay Area' },
+        ...SERVICE_AREAS.map((a) => ({ '@type': 'AdministrativeArea', name: `${a.county}, CA` })),
+      ],
     },
     {
       '@type': 'FAQPage',

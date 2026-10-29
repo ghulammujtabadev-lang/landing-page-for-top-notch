@@ -3,8 +3,8 @@ import { BUSINESS } from '@/lib/config';
 
 const ITEMS = [
   { icon: ShieldCheck, title: 'CA Licensed', text: BUSINESS.license },
-  { icon: FileText, title: 'Fully Insured', text: BUSINESS.insurance },
-  { icon: BadgeCheck, title: 'Bonded', text: BUSINESS.bond },
+  { icon: FileText, title: 'Fully Insured', text: 'Liability coverage' },
+  { icon: BadgeCheck, title: 'Bonded', text: 'Bonded officers' },
   { icon: Award, title: 'BSIS & ASIS', text: 'Certified officers' },
   { icon: Clock, title: '24/7/365', text: 'Dispatch & support' },
 ];

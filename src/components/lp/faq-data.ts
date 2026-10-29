@@ -15,7 +15,7 @@ export const FAQS: { q: string; a: string }[] = [
   },
   {
     q: 'Are your officers licensed and insured?',
-    a: `Yes. ${BUSINESS.name} is licensed by the California Bureau of Security and Investigative Services (${BUSINESS.license}). Our officers hold valid BSIS guard cards, and we carry ${BUSINESS.insurance.toLowerCase()} insurance with ${BUSINESS.bond.toLowerCase()} personnel.`,
+    a: `Yes. ${BUSINESS.name} is licensed by the California Bureau of Security and Investigative Services (${BUSINESS.license}). Our officers hold valid BSIS guard cards, and we are fully bonded and insured.`,
   },
   {
     q: 'Do I have to sign a long-term contract?',

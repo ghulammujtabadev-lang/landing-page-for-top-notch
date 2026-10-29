@@ -18,6 +18,7 @@ export type Attribution = Partial<Record<(typeof ATTRIBUTION_KEYS)[number], stri
 
 export interface LeadInput {
   propertyType: string;
+  otherProperty: string;
   serviceType: string;
   timeline: string;
   city: string;
@@ -37,6 +38,7 @@ export type FieldErrors = Partial<Record<keyof LeadInput, string>>;
 
 export const EMPTY_LEAD: LeadInput = {
   propertyType: '',
+  otherProperty: '',
   serviceType: '',
   timeline: '',
   city: '',
@@ -72,6 +74,7 @@ export function validateStep(step: number, lead: LeadInput): FieldErrors {
   const e: FieldErrors = {};
   if (step === 1) {
     if (!PROPERTY_TYPES.some((p) => p.key === lead.propertyType)) e.propertyType = 'Please choose what you need protected.';
+    else if (lead.propertyType === 'other' && lead.otherProperty.trim().length < 2) e.otherProperty = 'Please tell us the type of property.';
   }
   if (step === 2) {
     if (!(SERVICE_TYPES as readonly string[]).includes(lead.serviceType)) e.serviceType = 'Please choose a service.';
@@ -85,7 +88,8 @@ export function validateStep(step: number, lead: LeadInput): FieldErrors {
     else if (name.length > 80) e.name = 'Name is too long.';
     const d = phoneDigits(lead.phone);
     if (d.length !== 10 || /^[01]/.test(d)) e.phone = 'Please enter a valid 10-digit US phone number.';
-    if (lead.email.trim() && !EMAIL_RE.test(lead.email.trim())) e.email = 'Please check your email address.';
+    if (!lead.email.trim()) e.email = 'Please enter your email address.';
+    else if (!EMAIL_RE.test(lead.email.trim())) e.email = 'Please check your email address.';
     if (lead.message.length > 1500) e.message = 'Please keep details under 1,500 characters.';
   }
   return e;
@@ -95,7 +99,9 @@ export function validateLead(lead: LeadInput): FieldErrors {
   return { ...validateStep(1, lead), ...validateStep(2, lead), ...validateStep(3, lead) };
 }
 
-export function propertyLabel(key: string): string {
+/** What the visitor chose, or what they typed when they picked "Other". */
+export function propertyLabel(key: string, otherProperty = ''): string {
+  if (key === 'other' && otherProperty.trim()) return otherProperty.trim();
   return PROPERTY_TYPES.find((p) => p.key === key)?.label ?? key;
 }
 

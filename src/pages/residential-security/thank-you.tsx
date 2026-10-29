@@ -115,8 +115,7 @@ export default function ThankYouPage() {
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-500">
             <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-green-600" aria-hidden /> CA License {BUSINESS.license}</span>
-            <span>{BUSINESS.insurance}</span>
-            <span>{BUSINESS.bond}</span>
+            <span>Licensed, bonded &amp; insured</span>
           </div>
         </section>
       </main>

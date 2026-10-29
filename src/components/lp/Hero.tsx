@@ -53,7 +53,7 @@ export default function Hero({ headline, subheadline, initialProperty, initialCi
               </span>
             )}
             <span className="flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-security-yellow" aria-hidden /> {BUSINESS.license}</span>
-            <span className="flex items-center gap-1.5"><UserCheck className="h-4 w-4 text-security-yellow" aria-hidden /> {BUSINESS.insurance}</span>
+            <span className="flex items-center gap-1.5"><UserCheck className="h-4 w-4 text-security-yellow" aria-hidden /> Licensed, bonded &amp; insured</span>
             <span className="flex items-center gap-1.5"><Clock className="h-4 w-4 text-security-yellow" aria-hidden /> 24/7 dispatch</span>
           </div>
         </div>

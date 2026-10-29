@@ -4,7 +4,7 @@ import CallLink from './CallLink';
 
 const REASONS = [
   { icon: UserCheck, title: 'Vetted, licensed officers', text: 'Every officer is background-checked, BSIS guard-card certified and professionally trained.' },
-  { icon: ShieldCheck, title: 'Fully licensed & insured', text: `California ${BUSINESS.license}, ${BUSINESS.insurance.toLowerCase()} coverage and ${BUSINESS.bond.toLowerCase()} personnel.` },
+  { icon: ShieldCheck, title: 'Fully licensed & insured', text: `California ${BUSINESS.license}. Licensed, bonded and insured.` },
   { icon: Eye, title: 'Discreet & professional', text: 'Courteous officers who respect your privacy, your neighbors and your residents.' },
   { icon: FileText, title: 'Clear reporting', text: 'Incident and activity reports so you always know what happened on your property.' },
   { icon: Radio, title: '24/7 dispatch & support', text: 'A live person answers day or night – including weekends and holidays.' },
