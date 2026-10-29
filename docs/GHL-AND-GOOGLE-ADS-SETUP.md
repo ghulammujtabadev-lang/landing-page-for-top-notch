@@ -68,7 +68,7 @@ so you don't need to copy any IDs.
 | Service Type | Single line | Unarmed / Armed / Patrol / Not sure |
 | Timeline | Single line | Immediate (Within 24 hours) … |
 | Lead Details | Multi line | Visitor's notes |
-| GCLID | Single line | Google click ID (**required for offline conversions**) |
+| Google Click ID | Single line | Google click ID (**required for offline conversions**). GHL refuses the name "GCLID" because it has a built-in field by that name |
 | GBRAID | Single line | Google click ID for iOS traffic |
 | WBRAID | Single line | Google click ID for iOS web-to-app traffic |
 | UTM Source | Single line | e.g. google |

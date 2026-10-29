@@ -76,7 +76,7 @@ export const CUSTOM_FIELDS = {
   service_type: 'Service Type',
   timeline: 'Timeline',
   lead_details: 'Lead Details',
-  gclid: 'GCLID',
+  gclid: 'Google Click ID', // "GCLID" is taken by a GHL standard field the API ignores
   gbraid: 'GBRAID',
   wbraid: 'WBRAID',
   utm_source: 'UTM Source',
