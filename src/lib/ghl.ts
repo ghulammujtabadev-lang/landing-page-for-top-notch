@@ -35,10 +35,16 @@ export function crmConfigured(): boolean {
   return Boolean((process.env.GHL_PRIVATE_TOKEN && process.env.GHL_LOCATION_ID) || process.env.GHL_WEBHOOK_URL);
 }
 
+// Adding this tag starts the GHL workflows ("Contact Tag Added" trigger).
+const TRIGGER_TAG = 'lp-residential';
+// Tags that describe only the latest request. On a repeat submission they are removed first, so the trigger fires
+// again and workflows never act on a stale answer (e.g. an old sms-consent-yes or urgent-24h).
+const PER_REQUEST_TAGS = [TRIGGER_TAG, 'urgent-24h', 'sms-consent-yes', 'sms-consent-no'];
+
 function tagsFor(lead: CrmLead): string[] {
   const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
   return [
-    'lp-residential',
+    TRIGGER_TAG,
     'source-google-ads-lp',
     `property-${slug(lead.propertyType)}`,
     `service-${slug(lead.serviceType)}`,
@@ -150,7 +156,7 @@ async function customFields(lead: CrmLead): Promise<{ id: string; key: string; f
     .map((k) => ({ id: ids[k]!, key: k, field_value: String(values[k]) }));
 }
 
-async function ghlRequest(method: 'GET' | 'POST', path: string, body?: unknown): Promise<any> {
+async function ghlRequest(method: 'GET' | 'POST' | 'DELETE', path: string, body?: unknown): Promise<any> {
   const res = await fetch(`${API}${path}`, {
     method,
     headers: {
@@ -222,13 +228,22 @@ async function deliverViaApi(lead: CrmLead, errors: string[]): Promise<string | 
   });
   const contactId: string | undefined = upsert?.contact?.id;
   if (!contactId) throw new Error('GHL upsert returned no contact id');
+  // GHL reports new: false when the upsert matched an existing contact (same phone or email).
+  const returning = upsert?.new === false;
 
   // Secondary steps: a failure here must not lose the lead, so collect errors instead of throwing.
-  // The "lp-residential" tag triggers GHL workflows, so it is added after the note and opportunity exist.
+  // The trigger tag starts GHL workflows, so it is added after the note and opportunity exist.
   const results = await Promise.allSettled([
     ghl(`/contacts/${contactId}/notes`, { body: noteFor(lead) }),
     createOpportunity(lead, contactId),
   ]);
+  // "Tag Added" doesn't fire for a tag the contact already has, so a returning visitor's previous tags are cleared
+  // first. If that fails the tags are still added; only the workflow re-run is lost, and the error is logged.
+  if (returning) {
+    results.push(
+      ...(await Promise.allSettled([ghlRequest('DELETE', `/contacts/${contactId}/tags`, { tags: PER_REQUEST_TAGS })])),
+    );
+  }
   results.push(...(await Promise.allSettled([ghl(`/contacts/${contactId}/tags`, { tags: tagsFor(lead) })])));
   for (const r of results) {
     if (r.status === 'rejected') errors.push(String(r.reason));

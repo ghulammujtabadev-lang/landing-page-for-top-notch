@@ -103,6 +103,9 @@ tags are still updated.
 
 **WF-1 "Residential LP – New Lead"**
 - **Trigger**: Contact Tag Added → `lp-residential`
+- **Settings → Allow re-entry: ON.** When someone submits the form again, the page first removes `lp-residential`
+  (plus `urgent-24h` and `sms-consent-yes`/`-no`) and then adds the new tags, so the workflow runs again with the
+  latest answers. In step 0, leave "Allow duplicate opportunities" off so the existing opportunity is updated.
 - **Actions**:
   0. **Create/Update Opportunity** → pipeline *Residential Security*, stage *New Lead*, name
      `{{contact.name}} – {{contact.property_type}} ({{contact.city}})`, source `Residential Landing Page`.

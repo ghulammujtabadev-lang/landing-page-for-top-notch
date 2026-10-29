@@ -69,7 +69,9 @@ Vercel env vars: `GHL_PRIVATE_TOKEN` (scopes: View Contacts, Edit Contacts, View
 
 Each lead is **upserted** (no duplicate contacts), gets its custom fields filled (property type, service, timeline,
 details, GCLID/GBRAID/WBRAID, UTMs, landing page), a note with all answers and the consent record, an optional
-opportunity, and finally the tags. The `lp-residential` tag triggers GHL workflows.
+opportunity, and finally the tags. The `lp-residential` tag triggers GHL workflows. For a returning contact the page
+first removes `lp-residential`, `urgent-24h` and `sms-consent-*`, so the workflows run again on the latest answers
+(turn on **Allow re-entry** in each workflow).
 
 Tags added: `lp-residential`, `source-google-ads-lp`, `property-*`, `service-*`, `city-*`, `urgent-24h`
 (when "Immediate"), and `sms-consent-yes` / `sms-consent-no`.
