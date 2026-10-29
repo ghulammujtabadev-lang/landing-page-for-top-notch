@@ -127,6 +127,6 @@ export const GOOGLE_RATING: { rating: number; count: number; url: string } | nul
 // (create a dedicated "Residential LP Lead" conversion action and put its label in NEXT_PUBLIC_GADS_CONVERSION).
 export const TRACKING = {
   gadsId: process.env.NEXT_PUBLIC_GADS_ID || 'AW-17120170393',
-  leadConversion: process.env.NEXT_PUBLIC_GADS_CONVERSION || 'AW-17120170393/rv8nCMj5zIAbEJmjxOM_',
+  leadConversion: process.env.NEXT_PUBLIC_GADS_CONVERSION || 'AW-17120170393/lUzSCNTltq4dEJmjxOM_',
   gtmId: process.env.NEXT_PUBLIC_GTM_ID || '',
 };
