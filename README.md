@@ -62,16 +62,14 @@ Every lead carries UTM parameters, `gclid`/`gbraid`/`wbraid` (stored for 90 days
 
 ### Option A (recommended): GHL API v2
 
-1. GHL → **Settings → Private Integrations → Create** with scopes `contacts.write`, `contacts.readonly`
-   and `opportunities.write`.
-2. In Vercel → Project → **Settings → Environment Variables**, add:
-   - `GHL_PRIVATE_TOKEN` – the token (never commit it)
-   - `GHL_LOCATION_ID` – Settings → Business Profile → Location ID
-   - optional `GHL_PIPELINE_ID` + `GHL_PIPELINE_STAGE_ID` – also creates an opportunity
-   - optional `GHL_CUSTOM_FIELD_IDS` – JSON map of custom-field IDs, e.g.
-     `{"property_type":"abc123","service_type":"def456","timeline":"...","city":"...","gclid":"...","utm_campaign":"...","utm_term":"..."}`
+**Step-by-step GHL + Google Ads setup: [docs/GHL-AND-GOOGLE-ADS-SETUP.md](docs/GHL-AND-GOOGLE-ADS-SETUP.md).**
 
-Each lead is **upserted** (no duplicate contacts), tagged, and gets a note with all answers, the consent record and the ad source.
+Vercel env vars: `GHL_PRIVATE_TOKEN`, `GHL_LOCATION_ID`, plus optionally `GHL_PIPELINE_NAME` / `GHL_PIPELINE_STAGE_NAME`
+(see `.env.example`). Custom fields and the pipeline are looked up **by name**, so no IDs need copying.
+
+Each lead is **upserted** (no duplicate contacts), gets its custom fields filled (property type, service, timeline,
+details, GCLID/GBRAID/WBRAID, UTMs, landing page), a note with all answers and the consent record, an optional
+opportunity, and finally the tags. The `lp-residential` tag triggers GHL workflows.
 
 Tags added: `lp-residential`, `source-google-ads-lp`, `property-*`, `service-*`, `city-*`, `urgent-24h`
 (when "Immediate"), and `sms-consent-yes` / `sms-consent-no`.
@@ -82,13 +80,9 @@ Create a Workflow with the **Inbound Webhook** trigger and put its URL in `GHL_W
 `first_name, last_name, phone (E.164), email, city, property_type, service_type, timeline, message, sms_consent,
 consent_text, tags, note, gclid, utm_*`. You can set both A and B; the lead succeeds if either accepts it.
 
-### GHL workflow to build (what the page promises)
+### GHL workflows
 
-The thank-you page tells the visitor to expect a confirmation and a call. Create a workflow triggered by
-**Contact Tag Added = `lp-residential`**:
-1. Send an instant SMS confirmation (only if the tag `sms-consent-yes` is present) and an email confirmation (if email exists).
-2. Notify the sales team (SMS/app) – prioritise `urgent-24h`.
-3. Create a call task due within the promised response time (`BUSINESS.responsePromise` in config).
+The thank-you page promises a confirmation and a call. Build workflow WF-1 from the setup guide so that happens.
 
 ## Google Ads tracking
 
