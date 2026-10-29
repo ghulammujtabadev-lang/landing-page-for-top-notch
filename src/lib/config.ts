@@ -119,9 +119,35 @@ export function propertyFromSlug(slug: string | undefined): PropertyKey | null {
 }
 
 // Only add real, verifiable reviews (with permission). The section hides itself while empty.
-export const TESTIMONIALS: { quote: string; name: string; context: string }[] = [];
+// Copied word for word from the Google Business Profile (5.0 from 9 reviews, Oct 2026). Long reviews are cut
+// at a sentence end, never edited. Names are shortened to first name + last initial.
+export const TESTIMONIALS: { quote: string; name: string; context: string }[] = [
+  {
+    quote: 'Excellent service! Very professional and responsive. Did a great job with security at our event. Will definitely use again.',
+    name: 'Tandis A.',
+    context: 'Google review',
+  },
+  {
+    quote:
+      'I highly recommend Top Notch Security Solutions for their professionalism, reliability, and excellent customer service. Their security officers are punctual, respectful, alert, and take their responsibilities seriously.',
+    name: 'Man Z.',
+    context: 'Google review',
+  },
+  {
+    quote: 'Excellent service, dependable, full service, I highly recommend Top Notch Security Solutions for any occasion.',
+    name: 'Z.S. K.',
+    context: 'Google review',
+  },
+  { quote: 'Very professional in their field. These guys are good 👍', name: 'Prince T.', context: 'Google review' },
+  { quote: 'Wonderful staff. Always positive and helpful', name: 'Roswell R.', context: 'Google review' },
+  { quote: 'They are exceptional in service delivery', name: 'Orji C.', context: 'Google review' },
+];
 
-export const GOOGLE_RATING: { rating: number; count: number; url: string } | null = null;
+export const GOOGLE_RATING: { rating: number; count: number; url: string } | null = {
+  rating: 5.0,
+  count: 9,
+  url: 'https://share.google/xgnCU5BWGRsrT5nIF',
+};
 
 // Google Ads tag + the conversion fired on the thank-you page. Env vars override these defaults
 // (create a dedicated "Residential LP Lead" conversion action and put its label in NEXT_PUBLIC_GADS_CONVERSION).

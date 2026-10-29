@@ -9,7 +9,7 @@ export default function Testimonials() {
       <div className="container">
         <div className="mx-auto max-w-2xl text-center">
           <p className="eyebrow">Client Reviews</p>
-          <h2 className="text-3xl md:text-4xl">What Bay Area Clients Say</h2>
+          <h2 className="text-3xl md:text-4xl">What Our Clients Say</h2>
           {GOOGLE_RATING && (
             <a href={GOOGLE_RATING.url} target="_blank" rel="noopener" className="mt-4 inline-flex items-center gap-2 text-gray-600 hover:text-security-navy">
               <span className="flex" aria-hidden>
