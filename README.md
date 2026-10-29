@@ -64,8 +64,8 @@ Every lead carries UTM parameters, `gclid`/`gbraid`/`wbraid` (stored for 90 days
 
 **Step-by-step GHL + Google Ads setup: [docs/GHL-AND-GOOGLE-ADS-SETUP.md](docs/GHL-AND-GOOGLE-ADS-SETUP.md).**
 
-Vercel env vars: `GHL_PRIVATE_TOKEN`, `GHL_LOCATION_ID`, plus optionally `GHL_PIPELINE_NAME` / `GHL_PIPELINE_STAGE_NAME`
-(see `.env.example`). Custom fields and the pipeline are looked up **by name**, so no IDs need copying.
+Vercel env vars: `GHL_PRIVATE_TOKEN` (scopes: View Contacts, Edit Contacts, View Custom Fields) and `GHL_LOCATION_ID`
+(see `.env.example`). The opportunity is created by GHL workflow WF-1, so leave `GHL_PIPELINE_NAME` unset. Custom fields are looked up **by name**, so no IDs need copying.
 
 Each lead is **upserted** (no duplicate contacts), gets its custom fields filled (property type, service, timeline,
 details, GCLID/GBRAID/WBRAID, UTMs, landing page), a note with all answers and the consent record, an optional

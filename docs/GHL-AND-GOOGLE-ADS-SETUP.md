@@ -12,7 +12,7 @@ conversion actions) matches what the landing page code sends. **Use the names ex
 ```
 Google Ad click (gclid) ──► Landing page (Vercel) ──► /api/lead (Vercel server) ──► GHL API v2
                                 │                                                    │ contact + custom fields
-                                │ thank-you page fires "Residential LP – Lead"       │ note + tags + opportunity
+                                │ thank-you page fires "Residential LP – Lead"       │ note + tags (WF-1 adds the opportunity)
                                 ▼ (with enhanced conversions)                        ▼
                            Google Ads  ◄─────────── "Add to Google Ads" workflow ── GHL pipeline stage changes
                                          (offline conversions: Qualified Lead, Closed Deal)
@@ -89,7 +89,7 @@ still appears in the lead note.
 ### 1.6 Pipeline (Opportunities → Pipelines → Create)
 Name: **Residential Security**. Create the stages in this order:
 
-1. **New Lead** – the page creates every opportunity here
+1. **New Lead** – WF-1 creates every opportunity here
 2. **Contacted**
 3. **Assessment Scheduled** – sends "Qualified Lead" to Google Ads (Part 2)
 4. **Quote Sent**
@@ -104,6 +104,9 @@ tags are still updated.
 **WF-1 "Residential LP – New Lead"**
 - **Trigger**: Contact Tag Added → `lp-residential`
 - **Actions**:
+  0. **Create/Update Opportunity** → pipeline *Residential Security*, stage *New Lead*, name
+     `{{contact.name}} – {{contact.property_type}} ({{contact.city}})`, source `Residential Landing Page`.
+     The page's API token deliberately has no opportunity access, so this step is what puts the lead in the pipeline.
   1. **Internal Notification (SMS + email)** to the owner and sales team:
      `🚨 New residential lead: {{contact.name}} {{contact.phone}} – {{contact.property_type}}, {{contact.service_type}}, {{contact.city}}. Timeline: {{contact.timeline}}`
      Use the merge-field picker so the custom-field keys come out right.
@@ -127,7 +130,8 @@ tags are still updated.
 
 ### 1.8 API access for the landing page
 1. **Settings → Private Integrations → Create new integration**. Name it "Residential Landing Page".
-2. Select these scopes: **View Contacts, Edit Contacts, View Custom Fields, View Opportunities, Edit Opportunities**.
+2. Select only these scopes: **View Contacts, Edit Contacts, View Custom Fields**. Nothing else: the page only creates
+   contacts, notes and tags, and WF-1 creates the opportunity.
 3. Copy the token. **It is shown only once.** Don't paste it into chat or email.
 4. In **Vercel → the landing-page project → Settings → Environment Variables**, add:
 
@@ -135,8 +139,6 @@ tags are still updated.
 |---|---|
 | `GHL_PRIVATE_TOKEN` | the token |
 | `GHL_LOCATION_ID` | from 1.1 |
-| `GHL_PIPELINE_NAME` | `Residential Security` |
-| `GHL_PIPELINE_STAGE_NAME` | `New Lead` |
 
 5. Redeploy: Vercel → Deployments → ⋯ → Redeploy.
 
