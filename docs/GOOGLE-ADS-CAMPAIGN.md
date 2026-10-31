@@ -19,8 +19,8 @@ Everything needed to build the first Search campaign for
 | Locations | The 21 cities below. Location option: **Presence: people in or regularly in your included locations** |
 | Language | English |
 | Ad schedule | All day, every day (24/7 dispatch) |
-| Budget | See section 7 |
-| Bidding (weeks 1–3) | **Maximize clicks**, max CPC limit **$12** |
+| Budget | **$60/day** (≈ $1,825/month) |
+| Bidding (weeks 1–3) | **Maximize clicks**, max CPC limit **$10** |
 | Bidding (after ~15–20 leads) | **Maximize conversions** |
 | Goals | **Use campaign-specific goals**: only *Submit lead form* + *Phone call lead* |
 | AI Max / Final URL expansion / automatically created assets | **Off** for launch, so every click goes to the right landing page |
@@ -256,8 +256,9 @@ Vacant Property Checks
 
 ## 7. Budget and the first 30 days
 
-- **Minimum:** $40/day. **Recommended:** $70–100/day for 21 cities and 6 ad groups. Bay Area clicks for
-  security-guard terms usually cost about $6–20.
+- **Budget: $60/day** (agreed). Bay Area clicks for security-guard terms usually cost about $6–15, so expect
+  roughly 5–9 clicks a day at launch. If the far cities (Santa Cruz, Napa, Fairfield, Half Moon Bay) spend
+  without leads in the first two weeks, remove them.
 - **Week 1–2:** check *Search terms* every 2–3 days and add new negatives. Pause keywords with spend but no
   relevant searches.
 - **After ~15–20 leads:** switch bidding to **Maximize conversions**.
