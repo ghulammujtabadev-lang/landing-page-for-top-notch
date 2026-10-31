@@ -34,89 +34,107 @@ Livermore, Pleasanton, San Ramon (all California).
 
 ## 2. Ad groups, keywords and final URLs
 
-Keyword match types: `"phrase"` and `[exact]`. Final URL suffix (UTMs) is already set at account level.
+### Match type strategy
+- **No broad match at launch.** With $60/day and no conversion history yet, broad match pulls in alarm-system,
+  camera and job searches. Revisit after 30+ conversions with Maximize conversions.
+- **Exact `[ ]`** for the core, highest-intent term of each ad group: these get the most budget and the cleanest
+  data.
+- **Phrase `" "`** for the rest: catches longer searches like "hoa security patrol **company near me**" or
+  "**armed** estate security guard **san jose**".
+- Both already include close variants (plurals, misspellings, reordered words with the same meaning), so
+  "security guards" / "guard" versions are not added separately.
+- **City names are not added to keywords.** Location targeting already limits the ads to the 21 cities, and
+  phrase match covers "… oakland" style searches.
+- **Each keyword lives in one ad group only**, so Google always sends it to the matching landing headline.
+- Words like "home security", "house security" or "apartment security" on their own are avoided: they're mostly
+  alarm/camera searches. Every keyword includes **guard**, **patrol**, **officer** or **security services**.
 
 ### AG1 – Residential (general)
 Final URL: `https://www.topnotchsecuritysolutions.com/residential-security`
-```text
-"residential security guard"
-"residential security services"
-"residential security company"
-"home security guard"
-"security guard for house"
-"private security for home"
-"hire a security guard"
-"security guard service near me"
-[residential security guard]
-[home security guard]
-```
+| Keyword | Match | Intent |
+|---|---|---|
+| `[residential security guard]` | Exact | Core |
+| `[residential security services]` | Exact | Core |
+| `"residential security guard"` | Phrase | Core + longer searches |
+| `"residential security services"` | Phrase | |
+| `"residential security company"` | Phrase | |
+| `"residential security patrol"` | Phrase | |
+| `"neighborhood security guard"` | Phrase | |
+| `"security guard for my house"` | Phrase | |
 
 ### AG2 – Home & Estate
 Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=home`
-```text
-"estate security guard"
-"estate security services"
-"private security guard for home"
-"house security guard"
-"residential security officer"
-"home protection security guard"
-[estate security]
-[private home security guard]
-```
+| Keyword | Match | Intent |
+|---|---|---|
+| `[home security guard]` | Exact | Core |
+| `[private security for home]` | Exact | Core |
+| `"home security guard"` | Phrase | |
+| `"private security guard for home"` | Phrase | |
+| `"house security guard"` | Phrase | |
+| `"estate security guard"` | Phrase | High value |
+| `"estate security services"` | Phrase | High value |
+| `"armed guard for home"` | Phrase | |
+| `"residential security officer"` | Phrase | |
 
 ### AG3 – HOA & Gated Community
 Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=hoa`
-```text
-"hoa security"
-"hoa security patrol"
-"hoa security guard"
-"gated community security"
-"gated community security guard"
-"neighborhood security patrol"
-"community security patrol"
-"neighborhood patrol service"
-[hoa security]
-[gated community security]
-```
+| Keyword | Match | Intent |
+|---|---|---|
+| `[hoa security]` | Exact | Core |
+| `[hoa security patrol]` | Exact | Core |
+| `"hoa security guard"` | Phrase | |
+| `"hoa security patrol"` | Phrase | |
+| `"hoa security company"` | Phrase | |
+| `"gated community security"` | Phrase | |
+| `"gate guard service"` | Phrase | |
+| `"neighborhood security patrol"` | Phrase | |
+| `"community patrol service"` | Phrase | |
 
 ### AG4 – Apartment & Condo
 Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=apartment`
-```text
-"apartment security guard"
-"apartment security patrol"
-"apartment complex security"
-"condo security guard"
-"condominium security"
-"residential building security"
-[apartment security guard]
-[apartment security services]
-```
+| Keyword | Match | Intent |
+|---|---|---|
+| `[apartment security guard]` | Exact | Core |
+| `[apartment security patrol]` | Exact | Core |
+| `"apartment security guard"` | Phrase | |
+| `"apartment security patrol"` | Phrase | |
+| `"apartment complex security"` | Phrase | |
+| `"condo security guard"` | Phrase | |
+| `"residential building security guard"` | Phrase | |
+| `"parking lot security patrol"` | Phrase | Apartment parking |
 
 ### AG5 – Vacant & Vacation Home
 Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=vacant`
-```text
-"vacant home security"
-"vacant house security"
-"vacant property security patrol"
-"vacation home security"
-"empty house security"
-[vacant property security]
-```
+| Keyword | Match | Intent |
+|---|---|---|
+| `[vacant home security]` | Exact | Core |
+| `"vacant home security"` | Phrase | |
+| `"vacant house security"` | Phrase | |
+| `"vacant property patrol"` | Phrase | |
+| `"vacation home security"` | Phrase | |
+| `"house watch service"` | Phrase | |
 
 ### AG6 – Private Events
 Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=event`
-```text
-"private event security"
-"party security guard"
-"house party security"
-"wedding security guard"
-"hire security for party"
-"event security guard"
-[private event security]
-[party security guard]
-```
+| Keyword | Match | Intent |
+|---|---|---|
+| `[private event security]` | Exact | Core |
+| `[party security guard]` | Exact | Core |
+| `"private event security"` | Phrase | |
+| `"party security guard"` | Phrase | |
+| `"house party security"` | Phrase | |
+| `"wedding security guard"` | Phrase | |
+| `"hire security for party"` | Phrase | |
 
----
+### Check volumes and costs in Keyword Planner before launch
+Public sources don't publish reliable volumes or CPCs for these terms; only Keyword Planner has them.
+1. Google Ads → **Tools → Planning → Keyword Planner → Get search volume and forecasts**.
+2. Paste all keywords above (without quotes/brackets).
+3. **Locations**: the 21 cities. **Language**: English. **Network**: Google. Date range: last 12 months.
+4. Download the result (CSV) and keep: Avg. monthly searches, Top-of-page bid (low/high), Competition.
+5. Drop keywords that show **0–10** searches **and** aren't core; flag any with a high top-of-page bid above
+   **$25**. Then check **Discover new keywords** with seeds "hoa security", "residential security guard",
+   "estate security" for ideas with real volume.
 
 ## 3. Negative keywords (campaign level, phrase match)
 
