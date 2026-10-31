@@ -198,44 +198,198 @@ network security
 
 ## 4. Responsive search ads (one per ad group)
 
-Each ad uses the **12 shared headlines** + **3 ad-group headlines** = 15, and the **4 descriptions**.
-Pin nothing at launch.
+Rules applied so each ad can reach **Excellent** Ad Strength and pass review:
+- **15 unique headlines and 4 unique descriptions** per ad, all within 30 / 90 characters.
+- **The ad group's keywords appear in the headlines**, so the ad matches what people searched.
+- **Varied themes:** keywords, services, trust (license, insurance, rating), and calls to action, so headlines
+  don't repeat each other.
+- **No pinning** at launch. Pinning lowers Ad Strength.
+- **Policy-safe:** no phone numbers in the text (the call asset shows the number), no exclamation marks in
+  headlines, no symbols like stars, no unverifiable "best/#1" claims. Every claim is also on the landing page.
+- **One ad per ad group** at launch. With $60/day, one strong ad gathers data faster than two weak ones.
+- Keep **AI Max / text customization off** until there's data. If it's on, Google writes extra headlines and
+  ignores pins.
+- Ad Strength is a guide, not a ranking factor. If Google shows "Good" for a while after publishing, that's fine.
 
-**Shared headlines**
+### AG1 Residential (general)
+Final URL: `https://www.topnotchsecuritysolutions.com/residential-security`  ·  Path: `residential` / `security`
+
+**Headlines**
 ```text
-Licensed Security Guards
-Bay Area Residential Security
-Free Security Quote
-Available 24/7
-Licensed PPO #122479
-BSIS-Licensed Officers
-Armed & Unarmed Guards
-Licensed, Bonded & Insured
+Residential Security Guards
+Residential Security Services
+Residential Security Company
+Residential Security Patrols
+Security Guard for Your House
+Neighborhood Security Guards
+Armed & Unarmed Officers
+Serving the SF Bay Area
+Free Custom Security Plan
 Get a Quote in 30 Seconds
-Vetted, Trained Officers
 Local Walnut Creek Company
+Licensed PPO #122479
+Licensed, Bonded & Insured
 Rated 5.0 on Google
+Available 24/7
 ```
 
-**Ad-group headlines**
-| Ad group | Headline 13 | Headline 14 | Headline 15 |
-|---|---|---|---|
-| AG1 Residential | Residential Security Guards | Security Guards Near You | Home Security Guard Service |
-| AG2 Home & Estate | Home & Estate Security Guards | Protect Your Home & Family | On-Site Guards for Estates |
-| AG3 HOA | HOA Security Patrols | Gated Community Security | Patrols for Your HOA |
-| AG4 Apartment | Apartment Security Guards | Condo & Apartment Security | Security for Your Building |
-| AG5 Vacant | Vacant Home Security | Vacation Home Patrols | Protect Your Empty Home |
-| AG6 Events | Private Event Security | Party & Wedding Security | Guards for Your Event |
-
-**Descriptions (all ad groups)**
+**Descriptions**
 ```text
-Licensed armed & unarmed security guards for Bay Area homes, HOAs and apartments.
-Free consultation and custom security plan. Call 24/7 or get a quote in 30 seconds.
-Vetted, BSIS-licensed officers. Mobile patrols and on-site guards. PPO #122479.
-Local Walnut Creek security company serving the East Bay, South Bay and Peninsula.
+Licensed residential security guards for Bay Area homes, HOAs and apartment buildings.
+Armed or unarmed officers and mobile patrols. Free consultation and custom security plan.
+Vetted, BSIS-licensed officers from a local Walnut Creek company. Available 24/7.
+Tell us about your property and get a free security quote. It takes about 30 seconds.
 ```
 
-**Display path:** `residential` / `security`
+### AG2 Home & Estate
+Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=home`  ·  Path: `residential` / `security`
+
+**Headlines**
+```text
+Home Security Guards
+Private Security for Homes
+Estate Security Guards
+Estate Security Services
+House Security Guard Service
+Armed Guards for Your Home
+Residential Security Officers
+Protect Your Family & Home
+Discreet, Professional Guards
+Overnight or 24/7 Coverage
+Free Home Security Quote
+Licensed PPO #122479
+Licensed, Bonded & Insured
+Rated 5.0 on Google
+Available 24/7
+```
+
+**Descriptions**
+```text
+On-site security guards for Bay Area homes and estates. Armed or unarmed, day or night.
+Discreet, vetted officers protecting your family, home and valuables. Free consultation.
+Access and visitor control by BSIS-licensed officers. Licensed, bonded and insured.
+Get a free custom security plan and quote for your home. It takes about 30 seconds.
+```
+
+### AG3 HOA & Gated Community
+Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=hoa`  ·  Path: `residential` / `security`
+
+**Headlines**
+```text
+HOA Security Patrols
+HOA Security Guards
+HOA Security Company
+Gated Community Security
+Gate Guard Service
+Neighborhood Security Patrol
+Community Patrol Service
+Reports for Your HOA Board
+Scheduled Mobile Patrols
+Guardhouse & Gate Staffing
+Free HOA Security Quote
+Licensed PPO #122479
+Licensed, Bonded & Insured
+Rated 5.0 on Google
+Available 24/7
+```
+
+**Descriptions**
+```text
+Licensed patrols and gate officers for Bay Area HOAs and gated communities.
+Scheduled mobile patrols, gate staffing and documented reports your board can review.
+Vetted, BSIS-licensed officers from a local Walnut Creek security company. Fully insured.
+Get a free security plan and quote for your community. Request one in about 30 seconds.
+```
+
+### AG4 Apartment & Condo
+Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=apartment`  ·  Path: `residential` / `security`
+
+**Headlines**
+```text
+Apartment Security Guards
+Apartment Security Patrols
+Apartment Complex Security
+Condo Security Guards
+Residential Building Security
+Parking & Garage Patrols
+Lobby & Concierge Security
+Security for Property Managers
+Incident Reports Included
+Protect Residents & Property
+Free Apartment Security Quote
+Licensed PPO #122479
+Licensed, Bonded & Insured
+Rated 5.0 on Google
+Available 24/7
+```
+
+**Descriptions**
+```text
+Licensed security guards and patrols for Bay Area apartment complexes and condo buildings.
+Lobby officers, parking and garage patrols, and incident reports for property managers.
+Vetted, BSIS-licensed officers from a local Walnut Creek company. Licensed and insured.
+Get a free custom security plan for your building. Request a quote in about 30 seconds.
+```
+
+### AG5 Vacant & Vacation Home
+Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=vacant`  ·  Path: `residential` / `security`
+
+**Headlines**
+```text
+Vacant Home Security
+Vacant House Security
+Vacant Property Patrols
+Vacation Home Security
+House Watch Service
+Random-Time Patrol Checks
+Deter Break-Ins & Squatters
+Updates While You Are Away
+Exterior & Entry Inspections
+Protect Your Empty Home
+Free Vacant Home Quote
+Licensed PPO #122479
+Licensed, Bonded & Insured
+Rated 5.0 on Google
+Available 24/7
+```
+
+**Descriptions**
+```text
+Mobile patrols and property checks for vacant homes and vacation homes in the Bay Area.
+Deter break-ins, vandalism and squatters while your home is empty or between tenants.
+Random-time patrols, entry inspections and status updates from BSIS-licensed officers.
+Get a free custom patrol plan for your property. Request a quote in about 30 seconds.
+```
+
+### AG6 Private Events
+Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=event`  ·  Path: `residential` / `security`
+
+**Headlines**
+```text
+Private Event Security
+Party Security Guards
+House Party Security
+Wedding Security Guards
+Hire Security for Your Party
+Guest List & Entry Control
+Parking & Crowd Management
+Low-Key, Professional Guards
+Licensed Event Officers
+Enjoy Your Event Stress-Free
+Free Event Security Quote
+Licensed PPO #122479
+Licensed, Bonded & Insured
+Rated 5.0 on Google
+Available 24/7
+```
+
+**Descriptions**
+```text
+Licensed security guards for private parties, weddings and events at Bay Area homes.
+Guest list and entry control, parking and crowd management so you can enjoy your event.
+Low-key, professional officers from a local Walnut Creek company. Licensed and insured.
+Tell us about your event and get a free security quote. It takes about 30 seconds.
+```
 
 ---
 
