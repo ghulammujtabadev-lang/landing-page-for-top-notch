@@ -46,6 +46,8 @@ Livermore, Pleasanton, San Ramon (all California).
 - **City names are not added to keywords.** Location targeting already limits the ads to the 21 cities, and
   phrase match covers "… oakland" style searches.
 - **Each keyword lives in one ad group only**, so Google always sends it to the matching landing headline.
+- **Rule (after the first search terms report):** a keyword without guard, patrol, officer or a specific property
+  type is **exact only**. Phrase "residential security services/company" matched ADT/Vivint alarm searches.
 - Words like "home security", "house security" or "apartment security" on their own are avoided: they're mostly
   alarm/camera searches. Every keyword includes **guard**, **patrol**, **officer** or **security services**.
 
@@ -56,8 +58,7 @@ Final URL: `https://www.topnotchsecuritysolutions.com/residential-security`
 | `[residential security guard]` | Exact | Core |
 | `[residential security services]` | Exact | Core |
 | `"residential security guard"` | Phrase | Core + longer searches |
-| ~~`"residential security services"`~~ | Phrase | **Paused**: pulled in alarm-system searches (ADT, Vivint…) |
-| ~~`"residential security company"`~~ | Phrase | **Paused**: pulled in alarm-system searches (ADT, Vivint…) |
+| `[residential security company]` | Exact | Replaces the phrase versions of "…services"/"…company", which pulled in alarm-system searches (ADT, Vivint…) |
 | `"residential security patrol"` | Phrase | |
 | `"neighborhood security guard"` | Phrase | |
 | `"security guard for my house"` | Phrase | |
@@ -72,7 +73,7 @@ Final URL: `https://www.topnotchsecuritysolutions.com/residential-security?svc=h
 | `"private security guard for home"` | Phrase | |
 | `"house security guard"` | Phrase | |
 | `"estate security guard"` | Phrase | High value |
-| `"estate security services"` | Phrase | High value |
+| `[estate security services]` | Exact | High value. Exact only: no guard/patrol word |
 | `"armed guard for home"` | Phrase | |
 | `"residential security officer"` | Phrase | |
 
