@@ -56,8 +56,8 @@ Final URL: `https://www.topnotchsecuritysolutions.com/residential-security`
 | `[residential security guard]` | Exact | Core |
 | `[residential security services]` | Exact | Core |
 | `"residential security guard"` | Phrase | Core + longer searches |
-| `"residential security services"` | Phrase | |
-| `"residential security company"` | Phrase | |
+| ~~`"residential security services"`~~ | Phrase | **Paused**: pulled in alarm-system searches (ADT, Vivint…) |
+| ~~`"residential security company"`~~ | Phrase | **Paused**: pulled in alarm-system searches (ADT, Vivint…) |
 | `"residential security patrol"` | Phrase | |
 | `"neighborhood security guard"` | Phrase | |
 | `"security guard for my house"` | Phrase | |
@@ -136,7 +136,11 @@ Public sources don't publish reliable volumes or CPCs for these terms; only Keyw
    **$25**. Then check **Discover new keywords** with seeds "hoa security", "residential security guard",
    "estate security" for ideas with real volume.
 
-## 3. Negative keywords (campaign level, phrase match)
+## 3. Negative keywords (shared list `Neg – Residential Security`, applied to the campaign)
+
+No marks = broad negative (blocks any search containing the word). `"quotes"` = phrase negative.
+Updated after the first search terms report: Google treated "residential security" like "home security", so
+alarm and camera brands (ADT, Vivint, Wyze, Arlo…) and "subscription/monitoring" searches came in.
 
 ```text
 jobs
@@ -150,49 +154,97 @@ hourly
 resume
 indeed
 apply
-part time
-full time
-near me hiring
-how to become
+"part time"
+"full time"
+"how to become"
+"near me hiring"
 training
 course
 class
 classes
 school
 certification
-license requirements
-guard card
-bsis exam
+"license requirements"
+"guard card"
+"bsis exam"
 test
 camera
 cameras
 cctv
 alarm
-alarm system
-adt
-ring
-simplisafe
-vivint
-doorbell
-smart home
+alarms
+"alarm system"
+"security system"
+"security systems"
+"home security system"
 system
+systems
 install
 installation
+installer
+equipment
+device
+devices
+sensor
+sensors
+panel
+upgrade
+kit
+wireless
+smart
+"smart home"
+doorbell
 lock
+locks
 locksmith
-safe
+"gun safe"
+safes
 diy
-free
 software
 app
+subscription
+monitoring
+monitored
+"perimeter home security"
+adt
+vivint
+ring
+simplisafe
+wyze
+arlo
+brinks
+frontpoint
+cove
+abode
+nest
+eufy
+blink
+xfinity
+comcast
+honeywell
+kangaroo
+google
+"deep sentinel"
+"alarm.com"
+"companies like"
+address
+login
+cancel
+"customer service"
+"phone number"
+reviews
+free
 uniform
 vest
 games
 movie
-security deposit
+"security deposit"
 cyber
-network security
+"network security"
 ```
+
+**Check it's applied:** Tools → Shared library → Negative keyword lists → `Neg – Residential Security` →
+Applied to → the campaign.
 
 ---
 
