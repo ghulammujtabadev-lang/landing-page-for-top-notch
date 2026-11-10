@@ -386,7 +386,7 @@ exam
 camera
 cameras
 cctv
-alarm system
+"home alarm system"
 "security system"
 "security systems"
 install
