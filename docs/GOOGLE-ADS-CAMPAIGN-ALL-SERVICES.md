@@ -8,7 +8,7 @@ plan. Conversion tracking is already live on every page (see GHL-AND-GOOGLE-ADS-
 | Ad groups | 8 (2 per service) |
 | Keywords | 209, all exact match |
 | Ads | 1 responsive search ad per ad group: 15 headlines, 4 descriptions |
-| Negative keywords | 147 |
+| Negative keywords | 146 |
 | Import files | `docs/google-ads-import/` (keywords, ads, negatives) for Google Ads Editor |
 
 > Every claim in the ads is also on the landing page (Google Ads misrepresentation policy). All headlines are
@@ -372,7 +372,6 @@ apply
 "how to start"
 training
 course
-class
 classes
 school
 certification
@@ -380,8 +379,6 @@ certificate
 "license requirements"
 "guard card"
 "bsis exam"
-osha
-test
 exam
 camera
 cameras
@@ -397,7 +394,6 @@ device
 devices
 sensor
 sensors
-panel
 kit
 wireless
 smart
@@ -411,7 +407,6 @@ diy
 software
 app
 subscription
-monitoring
 monitored
 adt
 vivint
@@ -441,7 +436,6 @@ login
 cancel
 "customer service"
 "phone number"
-free
 uniform
 uniforms
 vest
@@ -452,7 +446,6 @@ template
 form
 forms
 pdf
-log
 "log sheet"
 checklist
 definition
@@ -460,9 +453,6 @@ meaning
 "what is"
 "what does"
 wiki
-requirements
-rules
-code
 nfpa
 game
 steam
@@ -475,7 +465,6 @@ delilah
 wallpaper
 soundtrack
 movie
-tower
 lookout
 "cal fire"
 wildfire
@@ -483,15 +472,12 @@ weather
 "fire weather"
 "red flag"
 evacuation
-smoke
 extinguisher
 extinguishers
 "fire alarm repair"
 "fire alarm installation"
 "sprinkler repair"
 "sprinkler installation"
-inspection
-inspector
 ticket
 tickets
 volunteer
@@ -501,7 +487,20 @@ rent
 rental
 "for rent"
 "for sale"
-used
+"alarm monitoring"
+"camera monitoring"
+"home monitoring"
+"promo code"
+"coupon code"
+"zip code"
+"practice test"
+"security guard class"
+"guard class"
+"fire tower"
+"watch tower"
+"lookout tower"
+"free security camera"
+"home inspection"
 ```
 
 ---
